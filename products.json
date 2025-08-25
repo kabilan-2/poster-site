@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Cristiano Ronaldo",
+    "artist": "Kabilan",
+    "category": "Sports",
+    "orientation": "portrait",
+    "basePrice": 149,
+    "popularity": 98,
+    "addedAt": "2025-08-17",
+    "description": "Celebrate the legacy of one of football’s greatest icons with this striking portrait of Cristiano Ronaldo. Captured in a moment of fierce determination, this poster brings energy and inspiration to any space. Whether you're a die-hard fan or simply admire excellence, this piece is a bold tribute to athletic mastery.",
+    "tags": ["poster", "cr7", "football"],
+    "images": [{"src": "images/cr7.jpg", "alt": "ronaldo"}],
+    "variants": [
+      {"size": "A4", "price": 149},
+      {"size": "A3", "price": 249},
+      {"size": "A2", "price": 449}
+    ]
+  },
+  {
+  "id": 2,
+    "title": "Lionel Messi",
+    "artist": "Kabilan",
+    "category": "Sports",
+    "orientation": "portrait",
+    "basePrice": 149,
+    "popularity": 98,
+    "addedAt": "2025-08-17",
+    "description": "Bring brilliance to your walls with this iconic portrait of Lionel Messi—football’s magician and master of finesse. Capturing his calm intensity and unmatched control, this poster is a tribute to the artistry of the game. Whether you're a devoted fan or simply admire greatness, this piece adds elegance and inspiration to any space.",
+    "tags": ["poster", "goat", "football"],
+    "images": [{"src": "images/messi.jpg", "alt": "messi"}],
+    "variants": [
+      {"size": "A4", "price": 149},
+      {"size": "A3", "price": 249},
+      {"size": "A2", "price": 449}
+    ]
+  },
+  {
+  "id": 3,
+    "title": "Porsche 911 GT3 RS",
+    "artist": "Kabilan",
+    "category": "cars",
+    "orientation": "portrait",
+    "basePrice": 149,
+    "popularity": 98,
+    "addedAt": "2025-08-17",
+    "description": "Unleash the thrill of motorsport with this high-octane portrait of the Porsche 911 GT3 RS. Engineered for speed and precision, this poster captures the car’s aggressive stance and aerodynamic elegance in stunning detail. A must-have for car enthusiasts, it brings the pulse of the racetrack straight to your wall.",
+    "tags": ["poster", "porsche", "car"],
+    "images": [{"src": "images/porsche.jpg", "alt": "porsche"}],
+    "variants": [
+      {"size": "A4", "price": 149},
+      {"size": "A3", "price": 249},
+      {"size": "A2", "price": 449}
+    ]
+  }
+]

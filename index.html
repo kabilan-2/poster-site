@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WallPosters — Posters Only</title>
+  <meta name="description" content="Poster-only shop: minimalist, vintage, travel, nature, typography." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="container header">
+    <a class="brand" href="index.html">🖼️ WallPosters</a>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search posters..." aria-label="Search posters">
+    </div>
+    <nav class="nav">
+      <button id="cartButton" class="btn icon" aria-haspopup="dialog" aria-controls="cartDrawer" aria-expanded="false">
+        🛒 <span id="cartCount" class="badge" aria-label="items in cart">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="container grid">
+    <aside class="filters" aria-label="Filters">
+      <details open>
+        <summary>Category</summary>
+        <div id="filter-category" class="chips"></div>
+      </details>
+      <details>
+        <summary>Orientation</summary>
+        <div id="filter-orientation" class="chips"></div>
+      </details>
+      <details>
+        <summary>Size</summary>
+        <div id="filter-size" class="chips"></div>
+      </details>
+      <button id="clearFilters" class="btn secondary small">Clear all</button>
+    </aside>
+
+    <section class="catalog">
+      <div class="toolbar">
+        <div id="resultsCount" class="muted"></div>
+        <label class="select">
+          <span class="sr-only">Sort by</span>
+          <select id="sortBy" aria-label="Sort by">
+            <option value="popularity">Popularity</option>
+            <option value="newest">Newest</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="productsGrid" class="products" role="list"></div>
+      <div id="emptyState" class="empty hidden" role="status">No posters match your filters.</div>
+    </section>
+  </main>
+
+  <!-- Product modal -->
+  <dialog id="productModal" class="modal" aria-label="Product detail">
+    <div class="modal-content" role="document">
+      <button class="btn icon close" data-close>✕</button>
+      <div class="modal-body">
+        <img id="modalImage" alt="">
+        <div class="modal-info">
+          <h2 id="modalTitle"></h2>
+          <p id="modalArtist" class="muted"></p>
+          <p id="modalDesc"></p>
+
+          <div class="selectors">
+            <label>Size <select id="modalSize"></select></label>
+          </div>
+
+          <div class="price-row">
+            <div id="modalPrice" class="price"></div>
+            <button id="addToCartBtn" class="btn primary">Add to Cart</button>
+          </div>
+
+          <div id="modalMeta" class="muted small"></div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Cart drawer -->
+  <dialog id="cartDrawer" class="drawer" aria-label="Cart">
+    <div class="drawer-content" role="document">
+      <header class="drawer-header">
+        <h3>Your Cart</h3>
+        <button class="btn icon close" data-close>✕</button>
+      </header>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="totals">
+          <div><span>Subtotal</span><span id="subtotal">₹0</span></div>
+          <div><span>Shipping</span><span id="shipping"> Calculated at checkout</span></div>
+          <div class="grand"><span>Total</span><span id="grandTotal">₹0</span></div>
+        </div>
+        <a href="checkout.html" class="btn primary block">Checkout</a>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="container footer">
+    <form id="newsletter" class="newsletter" aria-label="Newsletter signup">
+    <div class="muted small">© <span id="year"></span> WallPosters — Posters only.</div>
+  </footer>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

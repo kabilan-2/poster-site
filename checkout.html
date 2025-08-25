@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout — WallPosters</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="container header">
+    <a class="brand" href="index.html">🖼️ WallPosters</a>
+    <div class="muted">Secure checkout</div>
+  </header>
+
+  <main class="container checkout">
+    <section class="checkout-form">
+      <h1>Place Order</h1>
+      <form id="checkoutForm">
+  <label>Full name: <input name="name" required></label><br><br>
+  <label>Phone: <input name="phone" required></label><br><br>
+  <label>Email: <input name="email" type="email" required></label><br><br>
+  <label>Country: <input name="country" required value="India"></label><br><br>
+  <label>Address:</label><br>
+  <textarea name="address" rows="4" cols="50" required></textarea><br><br>
+  <label>City: <input name="city" required></label><br><br>
+  <label>State: <input name="state" required></label>
+  <label>Pin code: <input name="postal" required></label>
+<script>
+document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    const response = await fetch('http://localhost:3000/api/shipping', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      alert(result.message);
+      document.getElementById('orderSuccess').showModal();
+    } else {
+      alert(result.error || 'Something went wrong');
+    }
+  } catch (err) {
+    alert('Failed to connect to server');
+  }
+});
+</script>
+
+
+        <h2>Payment</h2>
+        <p class="muted small">Demo checkout — no real payment processed.</p>
+        <label>Card number : <input id="inp" placeholder="4242 4242 4242 4242" required></label>
+        <label>Name on card : <input id="inp" required></label>
+        <br>
+        <br>
+        <div class="grid-3">
+          <label>Expiry : <br><br> <input id="inp" placeholder="MM/YY" required></label>
+          <label>CVC : <br><br> <input id="inp" placeholder="123" required></label>
+          <label>Promo code : <br><br><input id="inp" id="promoCode" placeholder="Optional"></label>
+        </div>
+        <br>
+
+
+        <button class="btn primary">Place order</button>
+      </form>
+    </section>
+
+    <aside class="checkout-summary">
+      <h2>Order summary</h2>
+      <div id="summaryItems" class="cart-items"></div>
+      <div class="totals">
+        <div><span>Subtotal</span><span id="sumSubtotal">₹0</span></div>
+        <div><span>Discount</span><span id="sumDiscount">₹0</span></div>
+        <div><span>Shipping</span><span id="sumShipping">₹99</span></div>
+        <div class="grand"><span>Total</span><span id="sumTotal">₹0</span></div>
+      </div>
+    </aside>
+  </main>
+
+  <dialog id="orderSuccess" class="modal">
+    <div class="modal-content">
+      <h2>Thank you! 🎉</h2>
+      <p>Your order <strong id="orderId"></strong> has been placed. A confirmation email will be sent shortly.</p>
+      <a class="btn primary" href="index.html">Back to shop</a>
+    </div>
+  </dialog>
+
+  <script src="checkout.js" type="module"></script>
+
+</body>
+</html>
