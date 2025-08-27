@@ -38,12 +38,37 @@ renderSummary();
 
 const form = document.getElementById('checkoutForm');
 if (form) {
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const orderId = 'WP' + Math.random().toString(36).slice(2,8).toUpperCase();
-    const el = document.getElementById('orderId');
-    if (el) el.textContent = orderId;
-    if (dialog) dialog.showModal();
-    localStorage.removeItem('cart.v1');
+
+    // collect shipping form data
+    const formData = new FormData(e.target);
+    const shipping = Object.fromEntries(formData.entries());
+
+    // collect cart items
+    const items = cart.map(ci => ({
+      title: ci.title,
+      size: ci.variant.size,
+      qty: ci.qty
+    }));
+
+    try {
+      const response = await fetch('http://localhost:3000/api/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ shipping, items })
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        document.getElementById('orderId').textContent = result.orderId;
+        if (dialog) dialog.showModal();
+        localStorage.removeItem('cart.v1');
+      } else {
+        alert(result.error || 'Something went wrong');
+      }
+    } catch (err) {
+      alert('Failed to connect to server');
+    }
   });
 }
